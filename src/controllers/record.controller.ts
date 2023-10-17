@@ -17,6 +17,29 @@ const addRecord = (req: Request, res: Response) => {
     }
 }
 
+const addRecordAndNewPatient = (req:Request,res:Response)=>{
+    try {
+        const { names, nid, frequent_sickness, heart_rate, body_temp } = req.body
+        const query = `INSERT INTO patients (names, nid, frequent_sickness) VALUES (?, ?, ?)`
+        db.run(query, [names, nid, frequent_sickness], (err, row) => {
+            if (err) {
+                return res.status(500).json(ApiResponse.error("Error occured", err))
+            }
+            const query2 = `INSERT INTO records (patient_id, heart_rate, body_temp) VALUES (?, ?, ?)`
+            console.log(row)
+            db.run(query2, [row.id, heart_rate, body_temp], (err, row) => {
+                if (err) {
+                    return res.status(500).json(ApiResponse.error("Error occured", err))
+                }
+                return res.status(201).json(ApiResponse.success("Record added successfully", { data: row }))
+            })
+        })
+        
+    } catch (error) {
+        return res.status(500).json(ApiResponse.error("Error occured", error))
+    }
+}
+
 const getRecords = (req: Request, res: Response) => {
     try {
         const query = `SELECT * FROM records`
@@ -98,7 +121,8 @@ const recordController = {
     getRecord,
     getRecords,
     updateRecord,
-    getRecordsByPatient
+    getRecordsByPatient,
+    addRecordAndNewPatient
 }
 
 export default recordController;

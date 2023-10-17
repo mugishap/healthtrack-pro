@@ -4,6 +4,7 @@ import recordController from "../controllers/record.controller";
 const recordRouter = Router();
 
 recordRouter.post("/add-record", recordController.addRecord)
+recordRouter.post("/add-record-and-patient", recordController.addRecordAndNewPatient)
 recordRouter.delete("/delete/:id", recordController.deleteRecord)
 recordRouter.get("/all", recordController.getRecords)
 recordRouter.get("/:id", recordController.getRecord)
