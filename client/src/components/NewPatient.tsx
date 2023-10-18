@@ -1,10 +1,11 @@
-import { useCommon } from '@/context/CommonContext'
-import { useCreatePatient } from '@/hooks'
-import { Patient } from '@/types'
-import React, { useState } from 'react'
+import { useCommon } from '@/context/CommonContext';
+import { useCreatePatient } from '@/hooks';
+import { Patient } from '@/types';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { BiLoaderAlt } from "react-icons/bi";
+import { toast } from 'react-toastify';
 
-const NewPatient = () => {
+const NewPatient: FC = () => {
 
     const { setShowCreatePatient } = useCommon()
 
@@ -15,7 +16,7 @@ const NewPatient = () => {
         nid: "",
         frequent_sickness: ""
     })
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
             if (!patientData.names || !patientData.email || !patientData.nid || !patientData.frequent_sickness) return toast.error("Please fill all the fields");
@@ -40,7 +41,7 @@ const NewPatient = () => {
                             type="text"
                             className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                             placeholder="Names"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setPatientData({ ...patientData, names: e.target.value });
                             }}
                             value={patientData.names}
@@ -56,7 +57,7 @@ const NewPatient = () => {
                             type="email"
                             className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                             placeholder="Email"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setPatientData({ ...patientData, email: e.target.value });
                             }}
                             value={patientData.email}
@@ -72,7 +73,7 @@ const NewPatient = () => {
                             type="text"
                             className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                             placeholder="National ID"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setPatientData({ ...patientData, nid: e.target.value });
                             }}
                             value={patientData.nid}
@@ -87,7 +88,7 @@ const NewPatient = () => {
                             type="text"
                             className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                             placeholder="Frequest Sickness"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setPatientData({ ...patientData, frequent_sickness: e.target.value });
                             }}
                             value={patientData.frequent_sickness}

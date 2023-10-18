@@ -4,9 +4,9 @@ import db from "../utils/db.util";
 
 const addPatient = (req: Request, res: Response) => {
     try {
-        const { names, email, nid, frequent_sickness, password } = req.body
-        const query = `INSERT INTO patients (names, email, nid, frequent_sickness, password) VALUES (?, ?, ?, ?, ?)`
-        db.run(query, [names, email, nid, frequent_sickness, password], (err, row) => {
+        const { names, email, nid, frequent_sickness } = req.body
+        const query = `INSERT INTO patients (names, email, nid, frequent_sickness) VALUES (?, ?, ?, ?)`
+        db.run(query, [names, email, nid, frequent_sickness], (err, row) => {
             if (err) {
                 return res.status(500).json(ApiResponse.error("Error occured", err))
             }
@@ -49,9 +49,9 @@ const getPatient = (req: Request, res: Response) => {
 const updatePatient = (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const { names, email, nid, frequent_sickness, password } = req.body
-        const query = `UPDATE patients SET names = ?, email = ?, nid = ?, frequent_sickness = ?, password = ? WHERE id = ?`
-        db.run(query, [names, email, nid, frequent_sickness, password, id], (err) => {
+        const { names, email, nid, frequent_sickness } = req.body
+        const query = `UPDATE patients SET names = ?, email = ?, nid = ?, frequent_sickness = ? WHERE id = ?`
+        db.run(query, [names, email, nid, frequent_sickness, id], (err) => {
             if (err) {
                 return res.status(500).json(ApiResponse.error("Error occured", err))
             }

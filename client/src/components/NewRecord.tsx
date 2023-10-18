@@ -1,8 +1,9 @@
-import { useCommon } from '@/context/CommonContext'
-import { useCreateRecord } from '@/hooks'
-import { Record } from '@/types'
-import React, { useState } from 'react'
+import { useCommon } from '@/context/CommonContext';
+import { useCreateRecord } from '@/hooks';
+import { Record } from '@/types';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { BiLoaderAlt } from "react-icons/bi";
+import { toast } from 'react-toastify';
 
 const NewRecord = () => {
 
@@ -14,7 +15,7 @@ const NewRecord = () => {
         heart_rate: 0,
         body_temp: 0
     })
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
             if (!recordData.patient_id || !recordData.heart_rate || !recordData.body_temp) return toast.error("Please fill all the fields");
@@ -39,7 +40,7 @@ const NewRecord = () => {
                             type="text"
                             className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                             placeholder="Patient ID"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setRecordData({ ...recordData, patient_id: e.target.value });
                             }}
                             value={recordData.patient_id}
@@ -55,7 +56,7 @@ const NewRecord = () => {
                             type="number"
                             className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                             placeholder="Heart Rate"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setRecordData({ ...recordData, heart_rate: e.target.valueAsNumber });
                             }}
                             value={recordData.heart_rate}
@@ -71,7 +72,7 @@ const NewRecord = () => {
                             type="number"
                             className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                             placeholder="Body Temperature"
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setRecordData({ ...recordData, body_temp: e.target.valueAsNumber });
                             }}
                             value={recordData.body_temp}

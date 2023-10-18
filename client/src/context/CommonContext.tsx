@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { FC, createContext, useContext, useState } from "react";
 
-const CommonContext = React.createContext<any>({})
+const CommonContext = createContext<any>({})
 
 export const useCommon = () => {
-    return React.useContext(CommonContext)
+    return useContext(CommonContext)
 }
 
 export const CommonProvider = ({ children }: any) => {
@@ -12,6 +12,8 @@ export const CommonProvider = ({ children }: any) => {
     const [showCreateRecord, setShowCreateRecord] = useState(false)
     const [patients, setPatients] = useState([])
     const [records, setRecords] = useState([])
+    const [patientsLoading, setPatientsLoading] = useState([])
+    const [recordsLoading, setRecordsLoading] = useState([])
 
     return (
         <CommonContext.Provider value={{
@@ -22,7 +24,11 @@ export const CommonProvider = ({ children }: any) => {
             showCreatePatient,
             setShowCreatePatient,
             showCreateRecord,
-            setShowCreateRecord
+            setShowCreateRecord,
+            patientsLoading,
+            setPatientsLoading,
+            recordsLoading,
+            setRecordsLoading
         }}>
             {children}
         </CommonContext.Provider>
