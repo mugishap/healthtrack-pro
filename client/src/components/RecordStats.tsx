@@ -1,4 +1,4 @@
-import { useGetRecordsbyPatient } from '@/hooks'
+import { getRecordsByPatient } from '@/hooks'
 import { Patient, Record } from '@/types'
 import { FC, useEffect, useState } from 'react'
 import {
@@ -30,7 +30,7 @@ const RecordStats: FC<{ setShowStats: Function, activePatient: Patient | null }>
     const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
-        useGetRecordsbyPatient(setLoading, setRecords, activePatient?.id as number)
+        getRecordsByPatient(setLoading, setRecords, activePatient?.id as number)
     }, [])
 
     return (

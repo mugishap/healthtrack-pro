@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar'
 import NewPatient from '@/components/NewPatient'
 import NewRecord from '@/components/NewRecord'
 import RecordStats from '@/components/RecordStats'
-import { useDeletePatient, useGetPatients } from '@/hooks'
+import { deletePatient, getPatients } from '@/hooks'
 import { Patient } from '@/types'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
@@ -19,7 +19,7 @@ const Home = () => {
   const [activePatient, setActivePatient] = useState<Patient | null>(null)
   useEffect(() => {
 
-    useGetPatients(setLoading, setPatients);
+    getPatients(setLoading, setPatients);
 
   }, [])
 
@@ -42,7 +42,7 @@ const Home = () => {
       />
       <div className='w-7/12 flex flex-col items-end mx-auto'>
         <span className='my-4 font-bold text-lg mx-auto'>Records</span>
-        <button className='mt-12 bg-blue-600 rounded-lg text-white px-4 py-2 w-fit my-2' onClick={() => useGetPatients(setLoading, setPatients)}>Refresh</button>
+        <button className='mt-12 bg-blue-600 rounded-lg text-white px-4 py-2 w-fit my-2' onClick={() => getPatients(setLoading, setPatients)}>Refresh</button>
         <table className='w-full mx-auto mb-12'>
           <thead>
             <tr>
@@ -68,7 +68,7 @@ const Home = () => {
                   </td>
                   <td className='border py-2 border-gray-200' align='center'>
                     <button className='bg-red-600 px-4 py-2 rounded-lg text-white cursor-pointer' onClick={() => {
-                      useDeletePatient(setLoading, patient?.id as number, setPatients)
+                      deletePatient(setLoading, patient?.id as number, setPatients)
                     }}>Delete</button>
                   </td>
                 </tr>

@@ -1,4 +1,4 @@
-import { useCreatePatient } from '@/hooks';
+import { createPatient } from '@/hooks';
 import { Patient } from '@/types';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { BiLoaderAlt } from "react-icons/bi";
@@ -17,7 +17,7 @@ const NewPatient: FC<{ setShowCreatePatient: Function }> = ({ setShowCreatePatie
         try {
             e.preventDefault();
             if (!patientData.names || !patientData.email || !patientData.nid || !patientData.frequent_sickness) return toast.error("Please fill all the fields");
-            useCreatePatient(setLoading, patientData, setPatientData)
+            createPatient(setLoading, patientData, setPatientData)
         } catch (error) {
             console.log(error);
         }

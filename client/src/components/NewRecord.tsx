@@ -1,4 +1,4 @@
-import { useCreateRecord } from '@/hooks';
+import { createRecord } from '@/hooks';
 import { Record } from '@/types';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { BiLoaderAlt } from "react-icons/bi";
@@ -16,7 +16,7 @@ const NewRecord: FC<{ setShowCreateRecord: Function }> = ({ setShowCreateRecord 
         try {
             e.preventDefault();
             if (!recordData.patient_id || !recordData.heart_rate || !recordData.body_temp) return toast.error("Please fill all the fields");
-            useCreateRecord(setLoading, recordData, setShowCreateRecord)
+            createRecord(setLoading, recordData, setShowCreateRecord)
         } catch (error) {
             console.log(error);
         }

@@ -2,7 +2,7 @@ import { Patient, Record } from "@/types"
 import { toast } from 'react-toastify';
 import { api } from '@/api'
 
-export const useCreatePatient = async (setLoading: Function, data: Patient, setShowCreatePatient: Function) => {
+export const createPatient = async (setLoading: Function, data: Patient, setShowCreatePatient: Function) => {
     try {
         setLoading(true)
         const request = await api.post("/patient/add-patient", data)
@@ -17,7 +17,7 @@ export const useCreatePatient = async (setLoading: Function, data: Patient, setS
     }
 }
 
-export const useCreateRecord = async (setLoading: Function, data: Record, setShowCreateRecord: Function) => {
+export const createRecord = async (setLoading: Function, data: Record, setShowCreateRecord: Function) => {
     try {
         setLoading(true)
         const request = await api.post("/record/add-record", data)
@@ -32,7 +32,7 @@ export const useCreateRecord = async (setLoading: Function, data: Record, setSho
     }
 }
 
-export const useGetPatients = async (setLoading: Function, setPatients: Function) => {
+export const getPatients = async (setLoading: Function, setPatients: Function) => {
     try {
         setLoading(true)
         const request = await api.get("/patient/all")
@@ -60,7 +60,7 @@ export const useGetRecords = async (setLoading: Function, setRecords: Function) 
     }
 }
 
-export const useGetRecordsbyPatient = async (setLoading: Function, setRecords: Function, patient_id: number) => {
+export const getRecordsByPatient = async (setLoading: Function, setRecords: Function, patient_id: number) => {
     try {
         setLoading(true)
         const request = await api.get(`/record/patient/${patient_id}`)
@@ -75,7 +75,7 @@ export const useGetRecordsbyPatient = async (setLoading: Function, setRecords: F
     }
 }
 
-export const useDeletePatient = async (setLoading: Function, id: number, setRecords: Function) => {
+export const deletePatient = async (setLoading: Function, id: number, setRecords: Function) => {
     try {
         setLoading(true)
         const request = await api.delete(`/patient/delete/${id}`)
