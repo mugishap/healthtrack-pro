@@ -26,7 +26,6 @@ const addRecordAndNewPatient = (req: Request, res: Response) => {
                 return res.status(500).json(ApiResponse.error("Error occured", err))
             }
             const query2 = `INSERT INTO records (patient_id, heart_rate, body_temp) VALUES (?, ?, ?)`
-            console.log(row)
             db.run(query2, [row.id, heart_rate, body_temp], (err, row) => {
                 if (err) {
                     return res.status(500).json(ApiResponse.error("Error occured", err))

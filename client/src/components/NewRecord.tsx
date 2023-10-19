@@ -16,13 +16,13 @@ const NewRecord: FC<{ setShowCreateRecord: Function }> = ({ setShowCreateRecord 
         try {
             e.preventDefault();
             if (!recordData.patient_id || !recordData.heart_rate || !recordData.body_temp) return toast.error("Please fill all the fields");
-            useCreateRecord(setLoading, recordData, setRecordData)
+            useCreateRecord(setLoading, recordData, setShowCreateRecord)
         } catch (error) {
             console.log(error);
         }
     };
     return (
-        <div className='w-screen min-h-screen absolute bg-black/70 z-20 flex items-center justify-center'>
+        <div className='w-screen h-screen absolute bg-black/70 z-20 flex items-center justify-center'>
             <div className='w-full h-full absolute z-30' onClick={setShowCreateRecord(false)}></div>
             <div className='bg-white p-8 rounded-lg flex flex-col w-1/4 z-40'>
                 <span className='font-bold text-g'>Create Record</span>
@@ -83,7 +83,7 @@ const NewRecord: FC<{ setShowCreateRecord: Function }> = ({ setShowCreateRecord 
                             type="submit"
                             disabled={loading}
                         >
-                            {loading ? <BiLoaderAlt className="animate-spin" size={25} /> : "Create Patient"}
+                            {loading ? <BiLoaderAlt className="animate-spin" size={25} /> : "Create Record"}
                         </button>
                     </div>
                 </form>

@@ -4,6 +4,8 @@ export interface Patient {
     email: string;
     nid: string;
     frequent_sickness: string;
+    created_at?: string,
+    updated_at?: string
 }
 
 export interface Record {
@@ -12,4 +14,6 @@ export interface Record {
     patient_id?: number;
     heart_rate: number;
     body_temp: number;
+    created_at?: string,
+    updated_at?: string
 }

@@ -14,9 +14,9 @@ const Navbar: FC<Props> = ({ showCreatePatient, setShowCreatePatient, showCreate
             <span className='font-bold text-lg text-black'>Health Track Pro Plus</span>
             <div className='flex items-center gap-x-4'>
                 <button className='bg-blue-600 px-4 py-2 text-white rounded' onClick={() => setShowCreatePatient(!showCreatePatient)}>Create Patient</button>
-                <button className='bg-blue-600 px-4 py-2 text-white rounded' onClick={() => setShowCreateRecord(!showCreateRecord)}>Create Record</button>
+                <button className='bg-blue-600 px-4 py-2 text-white rounded' onClick={() => { setShowCreateRecord(true) }}>Create Record</button>
             </div>
-        </div>
+        </div >
     )
 }
 
