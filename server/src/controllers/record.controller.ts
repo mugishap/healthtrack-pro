@@ -42,7 +42,7 @@ const addRecordAndNewPatient = (req:Request,res:Response)=>{
 
 const getRecords = (req: Request, res: Response) => {
     try {
-        const query = `SELECT * FROM records`
+        const query = `SELECT * FROM records INNER JOIN patients ON records.patient_id = patients.id`
         db.all(query, [], (err, rows) => {
             if (err) {
                 return res.status(500).json(ApiResponse.error("Error occured", err))

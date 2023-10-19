@@ -6,7 +6,9 @@ export interface Patient {
 }
 
 export interface Record {
-    patient_id: string;
+    id?: number
+    names?: string;
+    patient_id?: number;
     heart_rate: number;
     body_temp: number;
 }

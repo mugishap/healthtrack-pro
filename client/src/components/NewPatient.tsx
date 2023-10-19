@@ -1,13 +1,10 @@
-import { useCommon } from '@/context/CommonContext';
 import { useCreatePatient } from '@/hooks';
 import { Patient } from '@/types';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { BiLoaderAlt } from "react-icons/bi";
 import { toast } from 'react-toastify';
 
-const NewPatient: FC = () => {
-
-    const { setShowCreatePatient } = useCommon()
+const NewPatient: FC<{ setShowCreatePatient: Function }> = ({ setShowCreatePatient }) => {
 
     const [loading, setLoading] = useState(false)
     const [patientData, setPatientData] = useState<Patient>({
@@ -27,8 +24,8 @@ const NewPatient: FC = () => {
     };
     return (
         <div className='w-screen min-h-screen absolute bg-black/70 z-20 flex items-center justify-center'>
-            <div className='w-full h-full absolute z-30' onClick={setShowCreatePatient(false)}></div>
-            <div className='bg-white p-8 rounded-lg flex flex-col w-1/4'>
+            <div className='w-full h-full absolute z-30' onClick={() => setShowCreatePatient(false)}></div>
+            <div className='bg-white p-8 rounded-lg flex flex-col w-1/4 z-40'>
                 <span className='font-bold text-g'>Create Patient</span>
                 <form onSubmit={handleSubmit} className='w-full gap-y-2 flex flex-col'>
                     <div>
@@ -97,12 +94,12 @@ const NewPatient: FC = () => {
                     <div className="mt-4">
                         <button
                             role="button"
-                            aria-label="login "
+                            aria-label="Create Patient "
                             className="focus:ring-2 flex items-center justify-center focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-blue-500 border rounded hover:bg-blue-600 duration-1000 py-4 w-full disabled:bg-slate-600"
                             type="submit"
                             disabled={loading}
                         >
-                            {loading ? <BiLoaderAlt className="animate-spin" size={25} /> : "LOGIN"}
+                            {loading ? <BiLoaderAlt className="animate-spin" size={25} /> : "Create Patient"}
                         </button>
                     </div>
                 </form>
