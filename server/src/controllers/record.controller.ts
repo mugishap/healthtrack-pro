@@ -17,7 +17,7 @@ const addRecord = (req: Request, res: Response) => {
     }
 }
 
-const addRecordAndNewPatient = (req:Request,res:Response)=>{
+const addRecordAndNewPatient = (req: Request, res: Response) => {
     try {
         const { names, nid, frequent_sickness, heart_rate, body_temp } = req.body
         const query = `INSERT INTO patients (names, nid, frequent_sickness) VALUES (?, ?, ?)`
@@ -34,7 +34,7 @@ const addRecordAndNewPatient = (req:Request,res:Response)=>{
                 return res.status(201).json(ApiResponse.success("Record added successfully", { data: row }))
             })
         })
-        
+
     } catch (error) {
         return res.status(500).json(ApiResponse.error("Error occured", error))
     }
@@ -108,7 +108,7 @@ const getRecordsByPatient = (req: Request, res: Response) => {
             if (err) {
                 return res.status(500).json(ApiResponse.error("Error occured", err))
             }
-            return res.status(200).json(ApiResponse.success("Records fetched successfully", rows))
+            return res.status(200).json(ApiResponse.success("Records fetched successfully", { records: rows }))
         })
     } catch (error) {
         return res.status(500).json(ApiResponse.error("Error occured", error))
